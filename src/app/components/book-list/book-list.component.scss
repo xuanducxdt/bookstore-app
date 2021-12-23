@@ -1,0 +1,54 @@
+.app-book-list-container {
+  .main-row {
+    display: flex;
+    justify-content: center;
+    .main-col {
+      .number-books {
+        margin: 0 0 10px 24px;
+        font-weight: bold;
+      }
+      .book-detail {
+        background-color: #673ab72b;
+        border: 1px solid #8080806b;
+        border-radius: 12px;
+        padding: 12px 24px;
+        margin-bottom: 12px;
+        .book-title {
+          margin: 0;
+          font-weight: bold;
+        }
+        .book-price {
+          font-style: italic;
+          margin: 0;
+        }
+      }
+      .book-detail:nth-child(2n + 1) {
+        background-color: #673ab714;
+      }
+      .book-detail:hover {
+        background-color: #673ab77a;
+        transition: 0.8s;
+      }
+    }
+  }
+  @media (min-width: 1200px) {
+    .main-col {
+      width: 1100px;
+    }
+  }
+  @media (max-width: 1200px) {
+    .main-col {
+      width: 900px;
+    }
+  }
+  @media (max-width: 992px) {
+    .main-col {
+      width: 750px;
+    }
+  }
+  @media (max-width: 768px) {
+    .main-col {
+      width: 650px;
+    }
+  }
+}

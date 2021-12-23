@@ -1,0 +1,33 @@
+<div class="app-header-container">
+  <p>
+    <mat-toolbar color="primary">
+      <mat-icon>bubble_chart</mat-icon>
+      <span class="mr-12 ml-12">NT BOOKSTORE</span>
+      <span class="example-spacer"></span>
+      <input *ngIf="showSearchInput" type="search" class="search-input" placeholder="Search">
+      <button
+        class="mr-12 ml-12"
+        mat-icon-button
+        matBadge="23"
+        matBadgePosition="before"
+        matBadgeColor="accent"
+        matBadgeSize="small"
+      >
+        <mat-icon>shopping_cart</mat-icon>
+      </button>
+      <button mat-icon-button [mat-menu-trigger-for]="mainMenu">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </mat-toolbar>
+  </p>
+  <mat-menu #mainMenu>
+    <button mat-menu-item>
+      <mat-icon>person</mat-icon>
+      <span>Profile</span>
+    </button>
+    <button mat-menu-item (click)="goToPage('login')">
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Sign out</span>
+    </button>
+  </mat-menu>
+</div>

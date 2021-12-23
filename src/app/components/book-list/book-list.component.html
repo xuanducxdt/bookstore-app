@@ -1,0 +1,20 @@
+<div class="app-book-list-container">
+  <div class="main-row">
+    <div class="main-col">
+      <h3 class="number-books">Number of books: 12</h3>
+      <div class="book-detail" *ngFor="let book of books">
+        <h4 class="book-title">[{{book.category.toUpperCase()}}] - {{book.title}}</h4>
+        <p class="book-price">
+          Price: {{book.price | currency:'VND':'symbol'}}
+        </p>
+      </div>
+      <mat-paginator
+        [length]="100"
+        [pageSize]="10"
+        [pageSizeOptions]="[10, 20, 30, 50]"
+        aria-label="Select page"
+      >
+      </mat-paginator>
+    </div>
+  </div>
+</div>
