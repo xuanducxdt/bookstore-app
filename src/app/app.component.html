@@ -1,12 +1,11 @@
-<div class="app-root-content">
+<div class="app-root-content" *ngIf="false">
   <div class="first-row">
     <app-header [showSearchInput]="showSearchInput"></app-header>
-    <app-book-detail></app-book-detail>
+    <app-book-list></app-book-list>
+    <router-outlet></router-outlet>
   </div>
   <div class="second-row">
     <app-footer></app-footer>
   </div>
 </div>
-<!-- <app-book-list></app-book-list> -->
-
 <router-outlet></router-outlet>

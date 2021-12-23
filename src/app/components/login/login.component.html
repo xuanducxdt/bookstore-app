@@ -1,1 +1,57 @@
-<p>login works!</p>
+<div class="app-book-detail-container">
+  <div class="main-row">
+    <div class="main-col">
+      <mat-toolbar color="primary" style="justify-content: center;">
+        <mat-icon>bubble_chart</mat-icon>
+        <span class="mr-12 ml-12">NT BOOKSTORE</span>
+      </mat-toolbar>
+      <mat-tab-group dynamicHeight>
+        <mat-tab label="Sign in">
+          <div class="example-large-box mat-elevation-z4">
+            <form
+              [formGroup]="signInForm"
+              (ngSubmit)="signIn(signInForm.value)"
+            >
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="xdt@bookstore.com" formControlName="email">
+              </mat-form-field>
+
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Password</mat-label>
+                <input matInput formControlName="password">
+              </mat-form-field>
+
+              <button mat-raised-button color="primary" type="submit" style="width: 100%;">Sign in</button>
+            </form>
+          </div>
+        </mat-tab>
+        <mat-tab label="Sign up">
+          <div class="example-large-box mat-elevation-z4">
+            <form
+              [formGroup]="signUpForm"
+              (ngSubmit)="signUp(signUpForm.value)"
+            >
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Full Name</mat-label>
+                <input matInput formControlName="fullName">
+              </mat-form-field>
+
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="xdt@bookstore.com" formControlName="email">
+              </mat-form-field>
+
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Password</mat-label>
+                <input matInput formControlName="password">
+              </mat-form-field>
+
+              <button mat-raised-button color="primary" type="submit" style="width: 100%;">Sign up</button>
+            </form>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>
