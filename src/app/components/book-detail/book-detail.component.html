@@ -1,1 +1,23 @@
-<p>book-detail works!</p>
+<div class="app-book-detail-container">
+  <div class="main-row">
+    <div class="main-col">
+      <div class="content-row">
+        <div class="image-col">
+          <img src="https://kenh14cdn.com/thumb_w/600/27fc8f4935/2015/09/09/POSTER%20THIEU%20(3)-cd46e.jpg" alt="Hình bìa sách Tôi thấy hoa vàng trên cỏ xanh">
+        </div>
+        <div class="detail-col">
+          <div style="margin: 24px;">
+            <h4 style="font-weight: bold;">[{{bookDetail.category.toUpperCase()}}] - {{bookDetail.title}}</h4>
+            <p>Mô tả: {{bookDetail.description}}</p>
+            <div>
+              <button>-</button>
+              <input type="number" style="width: 50px;" min="0" max="{{bookDetail.quantity}}">
+              <button>+</button>
+            </div>
+            <button>{{addCartButtonName.toUpperCase()}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

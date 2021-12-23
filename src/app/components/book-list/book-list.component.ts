@@ -1,11 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import { BookService } from 'src/app/services/book/book.service';
 
 export type Category = 'drama' | 'comedy' | 'sport';
 
 export interface IBook {
+  _id: string;
   title: string;
+  image: string;
   category: Category;
+  quantity: number;
   price: number;
+  description: string;
 }
 
 @Component({
@@ -15,31 +20,14 @@ export interface IBook {
 })
 export class BookListComponent implements OnInit {
 
-  books: Array<IBook> = [{
-    title: 'Tôi thấy hoa vàng trên cỏ xanh',
-    category: 'comedy',
-    price: 80000
-  }, {
-    title: 'Mắt biếc',
-    category: 'comedy',
-    price: 80000
-  }, {
-    title: 'Chuyện con mèo dạy hải âu bay',
-    category: 'comedy',
-    price: 80000
-  }, {
-    title: '70 độ thể thao',
-    category: 'sport',
-    price: 80000
-  }, {
-    title: 'Mây họa ánh trăng',
-    category: 'drama',
-    price: 80000
-  }]
+  books: IBook[] = [];
 
-  constructor() { }
+  constructor(private bookService: BookService) { }
 
   ngOnInit(): void {
+    this.bookService.getBooks().subscribe((response) => {
+      this.books = response.data;
+    });
   }
 
 }

@@ -1,0 +1,46 @@
+.app-book-detail-container {
+  .main-row {
+    display: flex;
+    justify-content: center;
+    .main-col {
+      .content-row {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        border: 1px solid #80808066;
+        border-radius: 4px;
+        .image-col {
+          width: 55%;
+          height: 500px;
+          img {
+            height: 100%;
+            width: 100%;
+          }
+        }
+        .detail-col {
+          width: 45%;
+        }
+      }
+    }
+  }
+  @media (min-width: 1200px) {
+    .main-col {
+      width: 1100px;
+    }
+  }
+  @media (max-width: 1200px) {
+    .main-col {
+      width: 900px;
+    }
+  }
+  @media (max-width: 992px) {
+    .main-col {
+      width: 750px;
+    }
+  }
+  @media (max-width: 768px) {
+    .main-col {
+      width: 650px;
+    }
+  }
+}
