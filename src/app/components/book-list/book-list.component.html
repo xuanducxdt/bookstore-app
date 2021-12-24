@@ -1,13 +1,20 @@
 <div class="app-book-list-container">
-  <div class="main-row">
+  <app-spinner *ngIf="isSpinner"></app-spinner>
+  <div class="main-row" *ngIf="!isSpinner">
     <div class="main-col">
-      <h3 class="number-books">Number of books: 12</h3>
-      <div class="book-detail" *ngFor="let book of books">
+      <div class="book-list-header">
+        <h3 class="number-books">Number of books: 12</h3>
+        <button mat-raised-button color="primary">
+          <mat-icon>add</mat-icon>
+          Add New Book
+        </button>
+      </div>
+      <a class="book-detail" routerLink="/book-detail/{{book._id}}" *ngFor="let book of books">
         <h4 class="book-title">[{{book.category.toUpperCase()}}] - {{book.title}}</h4>
         <p class="book-price">
           Price: {{book.price | currency:'VND':'symbol'}}
         </p>
-      </div>
+      </a>
       <mat-paginator
         [length]="100"
         [pageSize]="10"

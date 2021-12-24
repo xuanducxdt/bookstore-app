@@ -1,0 +1,28 @@
+.app-page-not-found-container {
+  height: 100%;
+  .main-row {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .main-col {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      .oops {
+        font-size: 100px;
+        font-weight: bold;
+        line-height: 125px;
+        color: #673ab7;
+      }
+      .page-not-found-title {
+        font-weight: bold;
+      }
+      .description {
+        font-size: 12px;
+        text-align: center;
+        font-style: italic;
+      }
+    }
+  }
+}

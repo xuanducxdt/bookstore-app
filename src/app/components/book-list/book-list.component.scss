@@ -3,8 +3,14 @@
     display: flex;
     justify-content: center;
     .main-col {
+      .book-list-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 0 12px 24px;
+      }
       .number-books {
-        margin: 0 0 10px 24px;
+        margin: 0;
         font-weight: bold;
       }
       .book-detail {
@@ -13,6 +19,9 @@
         border-radius: 12px;
         padding: 12px 24px;
         margin-bottom: 12px;
+        display: block;
+        text-decoration: none;
+        color: #000;
         .book-title {
           margin: 0;
           font-weight: bold;

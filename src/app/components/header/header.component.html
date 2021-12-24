@@ -1,8 +1,10 @@
 <div class="app-header-container">
   <p>
     <mat-toolbar color="primary">
-      <mat-icon>bubble_chart</mat-icon>
-      <span class="mr-12 ml-12">NT BOOKSTORE</span>
+      <a class="home-logo" routerLink="/">
+        <mat-icon>bubble_chart</mat-icon>
+        <span class="mr-12 ml-12">NT BOOKSTORE</span>
+      </a>
       <span class="example-spacer"></span>
       <input *ngIf="showSearchInput" type="search" class="search-input" placeholder="Search">
       <button
@@ -21,10 +23,10 @@
     </mat-toolbar>
   </p>
   <mat-menu #mainMenu>
-    <button mat-menu-item>
+    <!-- <button mat-menu-item>
       <mat-icon>person</mat-icon>
       <span>Profile</span>
-    </button>
+    </button> -->
     <button mat-menu-item (click)="goToPage('login')">
       <mat-icon>exit_to_app</mat-icon>
       <span>Sign out</span>

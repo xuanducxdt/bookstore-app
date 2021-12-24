@@ -21,12 +21,15 @@ export interface IBook {
 export class BookListComponent implements OnInit {
 
   books: IBook[] = [];
+  isSpinner: boolean = true;
 
   constructor(private bookService: BookService) { }
 
   ngOnInit(): void {
+    this.isSpinner = true;
     this.bookService.getBooks().subscribe((response) => {
       this.books = response.data;
+      this.isSpinner = false;
     });
   }
 

@@ -1,20 +1,35 @@
 <div class="app-book-detail-container">
-  <div class="main-row">
+  <app-spinner *ngIf="isSpinner"></app-spinner>
+  <div class="main-row" *ngIf="bookDetail && !isSpinner">
     <div class="main-col">
       <div class="content-row">
         <div class="image-col">
-          <img src="https://kenh14cdn.com/thumb_w/600/27fc8f4935/2015/09/09/POSTER%20THIEU%20(3)-cd46e.jpg" alt="Hình bìa sách Tôi thấy hoa vàng trên cỏ xanh">
+          <img src="http://localhost:8000/{{bookDetail.image}}" alt="Hình bìa sách Tôi thấy hoa vàng trên cỏ xanh">
         </div>
         <div class="detail-col">
-          <div style="margin: 24px;">
-            <h4 style="font-weight: bold;">[{{bookDetail.category.toUpperCase()}}] - {{bookDetail.title}}</h4>
-            <p>Mô tả: {{bookDetail.description}}</p>
-            <div>
-              <button>-</button>
-              <input type="number" style="width: 50px;" min="0" max="{{bookDetail.quantity}}">
-              <button>+</button>
+          <div class="child-detail-row">
+            <div class="top-child-detail-col">
+              <h4 class="book-title">[{{bookDetail.category.toUpperCase()}}] - {{bookDetail.title}}</h4>
+              <p class="book-description">{{bookDetail.description}}</p>
             </div>
-            <button>{{addCartButtonName.toUpperCase()}}</button>
+            <div class="bottom-child-detail-col">
+              <div>
+                <p class="quantity-title">Quantity: </p>
+                <div style="display: inline-block;">
+                  <button mat-icon-button color="primary">
+                    <mat-icon>remove_circle</mat-icon>
+                  </button>
+                  <input class="quantity-input" type="number" min="0" max="{{bookDetail.quantity}}" [defaultValue]="0">
+                  <button mat-icon-button color="primary">
+                    <mat-icon>add_circle</mat-icon>
+                  </button>
+                </div>
+              </div>
+              <button mat-raised-button color="primary" class="add-cart-button">
+                <mat-icon>add</mat-icon>
+                {{addCartButtonName.toUpperCase()}}
+              </button>
+            </div>
           </div>
         </div>
       </div>
