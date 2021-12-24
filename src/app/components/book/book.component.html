@@ -9,11 +9,20 @@
         <div class="detail-col">
           <div class="child-detail-row">
             <div class="top-child-detail-col">
-              <h4 class="book-title">[{{bookDetail.category.toUpperCase()}}] - {{bookDetail.title}}</h4>
-              <p class="book-description">{{bookDetail.description}}</p>
-              <span class="book-price">
-                {{bookDetail.price | currency:'VND':true}}
-              </span>
+              <div style="display: flex;justify-content: space-between;">
+                <div style="width: 100%;">
+                  <h4 class="book-title">[{{bookDetail.category.toUpperCase()}}] - {{bookDetail.title}}</h4>
+                </div>
+                <div>
+                  <button mat-mini-fab [mat-menu-trigger-for]="mainMenu" color="primary">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                </div>
+              </div>
+            <p class="book-description">{{bookDetail.description}}</p>
+            <span class="book-price">
+              {{bookDetail.price | currency:'VND':true}}
+            </span>
             </div>
             <div class="bottom-child-detail-col">
               <div>
@@ -38,4 +47,14 @@
       </div>
     </div>
   </div>
+  <mat-menu #mainMenu>
+    <button mat-menu-item>
+      <mat-icon>create</mat-icon>
+      <span>Edit</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>delete_outline</mat-icon>
+      <span>Delete</span>
+    </button>
+  </mat-menu>
 </div>

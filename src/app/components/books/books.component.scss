@@ -7,11 +7,12 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0 0 12px 24px;
+        padding: 0 0 12px 0;
       }
       .number-books {
-        margin: 0;
-        font-weight: bold;
+        @extend .main-price;
+        width: 250px;
+        background-color: #0eb59eb8;
       }
       .book-detail {
         background-color: #673ab72b;
@@ -25,19 +26,12 @@
         .book-title {
           margin: 0;
           font-weight: bold;
+          color: #0040f39c;
         }
         .book-price {
-          margin-top: 4px;
-          text-align: center;
-          font-style: italic;
+          @extend .main-price;
           background: #f94611b8;
-          display: block;
           width: 72px;
-          padding: 4px;
-          border-bottom-right-radius: 12px;
-          border-top-left-radius: 12px;
-          color: white;
-          font-weight: 500;
         }
       }
       .book-detail:nth-child(2n + 1) {
@@ -69,4 +63,16 @@
       width: 650px;
     }
   }
+}
+
+.main-price {
+  margin-top: 4px;
+  text-align: center;
+  font-style: italic;
+  display: block;
+  padding: 4px;
+  border-bottom-right-radius: 12px;
+  border-top-left-radius: 12px;
+  color: white;
+  font-weight: 500;
 }

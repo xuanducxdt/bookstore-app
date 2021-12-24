@@ -11,7 +11,7 @@
             <p class="column-header-title">Book</p>
           </th>
           <td mat-cell *matCellDef="let element">
-            <div class="book-detail-row">
+            <a class="book-detail-row" routerLink="/book/{{element.book._id}}">
               <div class="book-image-col">
                 <img src="http://localhost:8000/{{element.book.image}}" alt={{element.book.title}}>
               </div>
@@ -20,7 +20,7 @@
                   [{{element.book.category.toUpperCase()}}] - {{element.book.title}}
                 </p>
               </div>
-            </div>
+            </a>
           </td>
         </ng-container>
 

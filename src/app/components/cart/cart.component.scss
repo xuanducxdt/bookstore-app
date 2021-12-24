@@ -23,6 +23,7 @@
         text-align: center;
       }
       .book-detail-row {
+        text-decoration: none;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -43,6 +44,7 @@
           .book-title {
             margin: 0;
             font-weight: bold;
+            color: #0040f39c;
           }
         }
       }
