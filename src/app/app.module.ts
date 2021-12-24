@@ -16,6 +16,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTableModule } from '@angular/material/table';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,7 +26,6 @@ import { LoginComponent } from './components/login/login.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { AddBookFormDialogComponent } from './components/add-book-form-dialog/add-book-form-dialog.component';
-import { CartsComponent } from './components/carts/carts.component';
 import { BookComponent } from './components/book/book.component';
 import { BooksComponent } from './components/books/books.component';
 import { CartComponent } from './components/cart/cart.component';
@@ -39,7 +39,6 @@ import { CartComponent } from './components/cart/cart.component';
     PageNotFoundComponent,
     SpinnerComponent,
     AddBookFormDialogComponent,
-    CartsComponent,
     BookComponent,
     BooksComponent,
     CartComponent,
@@ -62,7 +61,8 @@ import { CartComponent } from './components/cart/cart.component';
     MatTabsModule,
     MatFormFieldModule,
     MatProgressSpinnerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

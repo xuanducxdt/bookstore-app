@@ -1,1 +1,83 @@
-<p>cart works!</p>
+<div class="app-cart-container">
+  <app-spinner *ngIf="isSpinner"></app-spinner>
+  <div class="main-row" *ngIf="!isSpinner">
+    <div class="main-col">
+      <div class="cart-header">
+        <h3 class="total-payment">Total payment: {{totalPayment | currency:'VND':true}}</h3>
+      </div>
+      <table mat-table [dataSource]="this.carts" class="mat-elevation-z8">
+        <ng-container matColumnDef="book">
+          <th mat-header-cell *matHeaderCellDef>
+            <p class="column-header-title">Book</p>
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <div class="book-detail-row">
+              <div class="book-image-col">
+                <img src="http://localhost:8000/{{element.book.image}}" alt={{element.book.title}}>
+              </div>
+              <div class="book-title-col">
+                <p class="book-title">
+                  [{{element.book.category.toUpperCase()}}] - {{element.book.title}}
+                </p>
+              </div>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="total-amount">
+          <th mat-header-cell *matHeaderCellDef>
+            <p class="column-header-title">Total Amount</p>
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <div class="total-amount-row">
+              <div class="total-amount-col">
+                <button mat-icon-button color="primary">
+                  <mat-icon>remove_circle</mat-icon>
+                </button>
+                <input class="quantity-input" type="number" min="0" max="{{element.book.quantity}}" [defaultValue]="element.totalAmount">
+                <button mat-icon-button color="primary">
+                  <mat-icon>add_circle</mat-icon>
+                </button>
+              </div>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef>
+            <p class="column-header-title">Price</p>
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <div class="book-price-row">
+              <span class="book-price">
+                {{element.book.price | currency:'VND':true}}
+              </span>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element">
+            <div class="delete-button-row">
+              <button mat-icon-button color="warn">
+                <mat-icon>delete_outline</mat-icon>
+              </button>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator
+        [length]="100"
+        [pageSize]="10"
+        [pageSizeOptions]="[10, 20, 30, 50]"
+        aria-label="Select page"
+      >
+      </mat-paginator>
+    </div>
+  </div>
+</div>
+

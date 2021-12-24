@@ -1,0 +1,108 @@
+.app-cart-container {
+  .main-row {
+    display: flex;
+    justify-content: center;
+    .main-col {
+      .cart-header {
+        .total-payment {
+          @extend .main-price;
+          width: 250px;
+          background-color: #1158f9b8;
+        }
+      }
+      table {
+        width: 100%;
+      }
+      mat-header-cell {
+        font-weight: bold;
+      }
+      .column-header-title {
+        font-weight: bold;
+        font-size: 15px;
+        color: #000;
+        text-align: center;
+      }
+      .book-detail-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100px;
+        .book-image-col {
+          height: 100%;
+          text-align: center;
+          display: flex;
+          align-items: center;
+          img {
+            max-width: 100%;
+            max-height: 100%;
+          }
+        }
+        .book-title-col {
+          width: 100%;
+          padding-left: 12px;
+          .book-title {
+            margin: 0;
+            font-weight: bold;
+          }
+        }
+      }
+      .book-price-row {
+        display: flex;
+        justify-content: center;
+        .book-price {
+          @extend .main-price;
+          width: 72px;
+          background: #f94611b8;
+        }
+      }
+      .total-amount-row {
+        display: flex;
+        justify-content: center;
+        .total-amount-col {
+          width: 120px;
+          display: inline-block;
+          .quantity-input {
+            width: 32px;
+            text-align: center;
+          }
+        }
+      }
+      .delete-button-row {
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+  @media (min-width: 1200px) {
+    .main-col {
+      width: 1100px;
+    }
+  }
+  @media (max-width: 1200px) {
+    .main-col {
+      width: 900px;
+    }
+  }
+  @media (max-width: 992px) {
+    .main-col {
+      width: 750px;
+    }
+  }
+  @media (max-width: 768px) {
+    .main-col {
+      width: 650px;
+    }
+  }
+}
+
+.main-price {
+  margin-top: 4px;
+  text-align: center;
+  font-style: italic;
+  display: block;
+  padding: 4px;
+  border-bottom-right-radius: 12px;
+  border-top-left-radius: 12px;
+  color: white;
+  font-weight: 500;
+}
