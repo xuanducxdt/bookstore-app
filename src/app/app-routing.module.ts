@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BookDetailComponent } from './components/book-detail/book-detail.component';
-import { BookListComponent } from './components/book-list/book-list.component';
+import { BookComponent } from './components/book/book.component';
+import { BooksComponent } from './components/books/books.component';
 import { LoginComponent } from './components/login/login.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: BookListComponent,
+    component: BooksComponent,
     pathMatch: 'full'
   },
   {
@@ -16,8 +16,8 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'book-detail/:id',
-    component: BookDetailComponent
+    path: 'book/:id',
+    component: BookComponent
   },
   {
     path: '**',

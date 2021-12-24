@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { IBook } from 'src/app/components/book-list/book-list.component';
+import { IBook } from 'src/app/components/books/books.component';
 import { GlobalConstants } from 'src/app/common/global.constants';
 
 export interface IBooksResponse {

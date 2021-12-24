@@ -22,11 +22,13 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
-import { BookListComponent } from './components/book-list/book-list.component';
-import { BookDetailComponent } from './components/book-detail/book-detail.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { AddBookFormDialogComponent } from './components/add-book-form-dialog/add-book-form-dialog.component';
+import { CartsComponent } from './components/carts/carts.component';
+import { BookComponent } from './components/book/book.component';
+import { BooksComponent } from './components/books/books.component';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -34,11 +36,13 @@ import { AddBookFormDialogComponent } from './components/add-book-form-dialog/ad
     HeaderComponent,
     FooterComponent,
     LoginComponent,
-    BookListComponent,
-    BookDetailComponent,
     PageNotFoundComponent,
     SpinnerComponent,
     AddBookFormDialogComponent,
+    CartsComponent,
+    BookComponent,
+    BooksComponent,
+    CartComponent,
   ],
   imports: [
     ReactiveFormsModule,

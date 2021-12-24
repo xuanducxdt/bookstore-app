@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { BookService } from 'src/app/services/book/book.service';
-import { IBook } from '../book-list/book-list.component';
-
+import { IBook } from '../books/books.component';
 @Component({
-  selector: 'app-book-detail',
-  templateUrl: './book-detail.component.html',
-  styleUrls: ['./book-detail.component.scss']
+  selector: 'app-book',
+  templateUrl: './book.component.html',
+  styleUrls: ['./book.component.scss']
 })
-export class BookDetailComponent implements OnInit {
+export class BookComponent implements OnInit {
   bookId: string = '';
   bookDetail: IBook | null = null;
   addCartButtonName: string = 'Add Cart';

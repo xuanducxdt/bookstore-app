@@ -16,11 +16,11 @@ export interface IBook {
 }
 
 @Component({
-  selector: 'app-book-list',
-  templateUrl: './book-list.component.html',
-  styleUrls: ['./book-list.component.scss']
+  selector: 'app-books',
+  templateUrl: './books.component.html',
+  styleUrls: ['./books.component.scss']
 })
-export class BookListComponent implements OnInit {
+export class BooksComponent implements OnInit {
 
   books: IBook[] = [];
   isSpinner: boolean = true;
@@ -38,4 +38,5 @@ export class BookListComponent implements OnInit {
   openDialog() {
     this.dialog.open(AddBookFormDialogComponent);
   }
+
 }

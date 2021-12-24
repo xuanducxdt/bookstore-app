@@ -9,7 +9,7 @@
           Add New Book
         </button>
       </div>
-      <a class="book-detail" routerLink="/book-detail/{{book._id}}" *ngFor="let book of books">
+      <a class="book-detail" routerLink="/book/{{book._id}}" *ngFor="let book of books">
         <h4 class="book-title">[{{book.category.toUpperCase()}}] - {{book.title}}</h4>
         <span class="book-price">
           {{book.price | currency:'VND':true}}

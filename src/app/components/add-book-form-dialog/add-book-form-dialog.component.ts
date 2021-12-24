@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { IBook } from '../book-list/book-list.component';
+import { IBook } from '../books/books.component';
 
 @Component({
   selector: 'app-add-book-form-dialog',
