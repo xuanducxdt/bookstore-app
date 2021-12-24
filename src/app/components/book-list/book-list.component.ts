@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { BookService } from 'src/app/services/book/book.service';
+import { AddBookFormDialogComponent } from '../add-book-form-dialog/add-book-form-dialog.component';
 
 export type Category = 'drama' | 'comedy' | 'sport';
 
@@ -23,7 +25,7 @@ export class BookListComponent implements OnInit {
   books: IBook[] = [];
   isSpinner: boolean = true;
 
-  constructor(private bookService: BookService) { }
+  constructor(private bookService: BookService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.isSpinner = true;
@@ -33,4 +35,7 @@ export class BookListComponent implements OnInit {
     });
   }
 
+  openDialog() {
+    this.dialog.open(AddBookFormDialogComponent);
+  }
 }

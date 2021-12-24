@@ -4,16 +4,16 @@
     <div class="main-col">
       <div class="book-list-header">
         <h3 class="number-books">Number of books: 12</h3>
-        <button mat-raised-button color="primary">
+        <button mat-raised-button color="primary" (click)="openDialog()">
           <mat-icon>add</mat-icon>
           Add New Book
         </button>
       </div>
       <a class="book-detail" routerLink="/book-detail/{{book._id}}" *ngFor="let book of books">
         <h4 class="book-title">[{{book.category.toUpperCase()}}] - {{book.title}}</h4>
-        <p class="book-price">
-          Price: {{book.price | currency:'VND':'symbol'}}
-        </p>
+        <span class="book-price">
+          {{book.price | currency:'VND':true}}
+        </span>
       </a>
       <mat-paginator
         [length]="100"
@@ -25,3 +25,4 @@
     </div>
   </div>
 </div>
+

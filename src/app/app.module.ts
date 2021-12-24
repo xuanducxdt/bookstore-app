@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +26,7 @@ import { BookListComponent } from './components/book-list/book-list.component';
 import { BookDetailComponent } from './components/book-detail/book-detail.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { AddBookFormDialogComponent } from './components/add-book-form-dialog/add-book-form-dialog.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     BookDetailComponent,
     PageNotFoundComponent,
     SpinnerComponent,
+    AddBookFormDialogComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -54,7 +57,8 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     MatPaginatorModule,
     MatTabsModule,
     MatFormFieldModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

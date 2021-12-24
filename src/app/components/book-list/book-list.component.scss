@@ -27,8 +27,17 @@
           font-weight: bold;
         }
         .book-price {
+          margin-top: 4px;
+          text-align: center;
           font-style: italic;
-          margin: 0;
+          background: #f94611b8;
+          display: block;
+          width: 72px;
+          padding: 4px;
+          border-bottom-right-radius: 12px;
+          border-top-left-radius: 12px;
+          color: white;
+          font-weight: 500;
         }
       }
       .book-detail:nth-child(2n + 1) {

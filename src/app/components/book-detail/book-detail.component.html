@@ -11,6 +11,9 @@
             <div class="top-child-detail-col">
               <h4 class="book-title">[{{bookDetail.category.toUpperCase()}}] - {{bookDetail.title}}</h4>
               <p class="book-description">{{bookDetail.description}}</p>
+              <span class="book-price">
+                {{bookDetail.price | currency:'VND':true}}
+              </span>
             </div>
             <div class="bottom-child-detail-col">
               <div>
@@ -26,7 +29,7 @@
                 </div>
               </div>
               <button mat-raised-button color="primary" class="add-cart-button">
-                <mat-icon>add</mat-icon>
+                <mat-icon>shopping_cart</mat-icon>
                 {{addCartButtonName.toUpperCase()}}
               </button>
             </div>
