@@ -1,0 +1,10 @@
+<div
+  *ngIf="formGroup && (formGroup.controls[fieldControl].invalid
+  && (formGroup.controls[fieldControl].dirty || formGroup.controls[fieldControl].touched))"
+>
+<div *ngFor="let error of errors">
+  <div *ngIf="formGroup.controls[fieldControl].errors?.[error.name]" class="error-message">
+    {{error.message}}
+  </div>
+</div>
+</div>

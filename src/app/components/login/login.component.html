@@ -1,53 +1,90 @@
-<div class="app-book-detail-container">
+<div class="app-login-container">
   <div class="main-row">
     <div class="main-col">
       <mat-toolbar color="primary" style="justify-content: center;">
         <mat-icon>bubble_chart</mat-icon>
         <span class="mr-12 ml-12">NT BOOKSTORE</span>
       </mat-toolbar>
-      <mat-tab-group dynamicHeight>
+      <mat-tab-group dynamicHeight [(selectedIndex)]="selectedTabIndex">
         <mat-tab label="Sign In">
-          <div class="example-large-box mat-elevation-z4">
+          <div class="example-large-box sign-in-large-box mat-elevation-z4">
             <form
               [formGroup]="signInForm"
               (ngSubmit)="signIn(signInForm.value)"
+              style="min-width: 300px;"
             >
               <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>Email</mat-label>
                 <input matInput placeholder="xdt@bookstore.com" formControlName="email">
               </mat-form-field>
+              <app-field-error-display
+                [formGroup]="signInForm"
+                fieldControl="email"
+                [errors]="emailErrors"
+              ></app-field-error-display>
 
               <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>Password</mat-label>
                 <input matInput formControlName="password">
               </mat-form-field>
+              <app-field-error-display
+                [formGroup]="signInForm"
+                fieldControl="password"
+                [errors]="passwordErrors"
+              ></app-field-error-display>
 
-              <button mat-raised-button color="primary" type="submit" style="width: 100%;">Sign In</button>
+              <button [disabled]="signInForm.invalid" mat-raised-button color="primary" type="submit" style="width: 100%;">Sign In</button>
             </form>
           </div>
         </mat-tab>
         <mat-tab label="Sign Up">
-          <div class="example-large-box mat-elevation-z4">
+          <div class="example-large-box sign-up-large-box mat-elevation-z4">
             <form
               [formGroup]="signUpForm"
               (ngSubmit)="signUp(signUpForm.value)"
+              style="min-width: 300px;"
             >
               <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>Full Name</mat-label>
                 <input matInput formControlName="fullName">
               </mat-form-field>
+              <app-field-error-display
+                [formGroup]="signUpForm"
+                fieldControl="fullName"
+                [errors]="passwordErrors"
+              ></app-field-error-display>
 
               <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>Email</mat-label>
                 <input matInput placeholder="xdt@bookstore.com" formControlName="email">
               </mat-form-field>
+              <app-field-error-display
+                [formGroup]="signUpForm"
+                fieldControl="email"
+                [errors]="emailErrors"
+              ></app-field-error-display>
 
               <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>Password</mat-label>
                 <input matInput formControlName="password">
               </mat-form-field>
+              <app-field-error-display
+                [formGroup]="signUpForm"
+                fieldControl="password"
+                [errors]="passwordErrors"
+              ></app-field-error-display>
 
-              <button mat-raised-button color="primary" type="submit" style="width: 100%;">Sign Up</button>
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Confirm Password</mat-label>
+                <input matInput formControlName="confirmPassword">
+              </mat-form-field>
+              <app-field-error-display
+                [formGroup]="signUpForm"
+                fieldControl="confirmPassword"
+                [errors]="confirmPasswordErrors"
+              ></app-field-error-display>
+
+              <button [disabled]="signUpForm.invalid" mat-raised-button color="primary" type="submit" style="width: 100%;">Sign Up</button>
             </form>
           </div>
         </mat-tab>

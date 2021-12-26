@@ -21,3 +21,13 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+.success-snackbar {
+  background: #53d927;
+  color: #fff;
+}
+
+.error-snackbar {
+  background: #f44336;
+  color: #fff;
+}

@@ -17,6 +17,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,6 +30,10 @@ import { AddBookFormDialogComponent } from './components/add-book-form-dialog/ad
 import { BookComponent } from './components/book/book.component';
 import { BooksComponent } from './components/books/books.component';
 import { CartComponent } from './components/cart/cart.component';
+import { FieldErrorDisplayComponent } from './components/field-error-display/field-error-display.component';
+import { FormInputComponent } from './components/form-input/form-input.component';
+import { SuccessToastComponent } from './components/success-toast/success-toast.component';
+import { ToastMessageComponent } from './components/toast-message/toast-message.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +47,10 @@ import { CartComponent } from './components/cart/cart.component';
     BookComponent,
     BooksComponent,
     CartComponent,
+    FieldErrorDisplayComponent,
+    FormInputComponent,
+    SuccessToastComponent,
+    ToastMessageComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -62,7 +71,8 @@ import { CartComponent } from './components/cart/cart.component';
     MatFormFieldModule,
     MatProgressSpinnerModule,
     MatDialogModule,
-    MatTableModule
+    MatTableModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

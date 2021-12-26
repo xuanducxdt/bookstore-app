@@ -1,4 +1,4 @@
-.app-book-detail-container {
+.app-login-container {
   height: 100%;
   .main-row {
     height: 100%;
@@ -15,8 +15,12 @@
         border-radius: 8px;
       }
 
-      .example-large-box {
-        height: 300px;
+      .sign-up-large-box {
+        height: 400px;
+        width: 300px;
+      }
+      .sign-in-large-box {
+        height: 250px;
         width: 300px;
       }
     }
@@ -31,4 +35,11 @@
 
 .example-full-width {
   width: 100%;
+}
+
+.error-message {
+  font-size: 12px;
+  color: red;
+  margin: -12px 0 12px 0;
+  font-style: italic;
 }
