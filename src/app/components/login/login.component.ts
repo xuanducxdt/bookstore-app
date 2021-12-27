@@ -1,5 +1,5 @@
 import { Component, OnInit, Output } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, FormGroupDirective, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user/user.service';
@@ -103,11 +103,13 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  signUp(user: IUser): void {
+  signUp(user: IUser, sigUpFormDirective: FormGroupDirective): void {
     this.userService.signUp(user).subscribe((response) => {
       if (response.message === 'Success') {
         this.selectedTabIndex = 0;
         this.openSnackBar(3000, 'Sign up success!', 'success');
+        this.signUpForm.reset();
+        sigUpFormDirective.resetForm();
       }
     },
     (error) => {
