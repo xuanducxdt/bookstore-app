@@ -2,6 +2,8 @@ import { Component, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, FormGroupDirective, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { GlobalConstants } from 'src/app/common/global.constants';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { UserService } from 'src/app/services/user/user.service';
 import { ErrorConfig } from '../field-error-display/field-error-display.component';
 import { ToastMessageComponent, ToastType } from '../toast-message/toast-message.component';
@@ -12,7 +14,8 @@ export interface IUser {
   fullName?: string;
   email: string;
   password: string;
-  role?: UserRole
+  role?: UserRole;
+  accessToken?: string;
 }
 
 @Component({
@@ -56,7 +59,7 @@ export class LoginComponent implements OnInit {
 
   signInForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, this.emailValidator()]),
-    password: new FormControl('', [Validators.required, this.passwordValidator()])
+    password: new FormControl('', [Validators.required])
   });
 
   signUpForm: FormGroup = new FormGroup({
@@ -68,6 +71,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private userService: UserService,
+    private authService: AuthService,
     private _snackBar: MatSnackBar,
     private router: Router
   ) { }
@@ -87,11 +91,11 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  signIn(user: any): void {
+  signIn(user: IUser): void {
     this.userService.signIn(user).subscribe((response) => {
-      if (response.message === 'Success') {
-        // this.selectedTabIndex = 0;
-        // this.openSnackBar(3000, 'Sign up success!', 'success');
+      if (response.message === 'Success' && response.data.accessToken && response.data.role) {
+        this.authService.setCookie('token', response.data.accessToken, GlobalConstants.cookieExpiryDays);
+        this.authService.setCookie('role', response.data.role, GlobalConstants.cookieExpiryDays);
         this.router.navigate(['/']);
       }
     },

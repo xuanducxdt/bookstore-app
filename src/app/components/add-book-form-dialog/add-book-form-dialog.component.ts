@@ -114,15 +114,20 @@ export class AddBookFormDialogComponent implements OnInit {
     this.dialogRef.close(data);
   }
 
+  onCancel(): void {
+    console.log('cancel')
+    this.dialogRef.close();
+  }
+
   onImageSelect(event: Event): void {
     const eventTarget = event.target as HTMLInputElement;
     if (eventTarget && eventTarget.files && eventTarget.files.length > 0) {
       const file = eventTarget.files[0];
       if (file) {
         this.addBookForm.controls['image'].setValue(file);
-        // const reader = new FileReader();
-        // reader.onload = () => this.imageSrc = reader.result;
-        // reader.readAsDataURL(file);
+        const reader = new FileReader();
+        reader.onload = () => this.imageSrc = reader.result;
+        reader.readAsDataURL(file);
       }
     }
   }

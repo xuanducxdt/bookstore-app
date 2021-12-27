@@ -19,6 +19,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -76,7 +77,12 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     MatSnackBarModule,
     MatSelectModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: JWT_OPTIONS, useValue: JWT_OPTIONS
+    },
+    JwtHelperService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

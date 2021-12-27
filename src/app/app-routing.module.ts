@@ -5,6 +5,7 @@ import { BooksComponent } from './components/books/books.component';
 import { CartComponent } from './components/cart/cart.component';
 import { LoginComponent } from './components/login/login.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { AuthGuard } from './guards/auth/auth.guard';
 
 const routes: Routes = [
   {
@@ -14,19 +15,23 @@ const routes: Routes = [
   {
     path: '',
     component: BooksComponent,
-    pathMatch: 'full'
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
   },
   {
     path: 'book/:id',
-    component: BookComponent
+    component: BookComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'cart',
-    component: CartComponent
+    component: CartComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: '**',
-    component: PageNotFoundComponent
+    component: PageNotFoundComponent,
+    canActivate: [AuthGuard]
   }
 ];
 

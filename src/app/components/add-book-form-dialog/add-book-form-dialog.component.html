@@ -2,11 +2,10 @@
   <h3 style="font-weight: bold;">Add New Book Form</h3>
   <form
     [formGroup]="addBookForm"
-    (ngSubmit)="onSave()"
   >
     <div class="upload-image-row">
       <div class="upload-image-button-col">
-        <input type="file" name="image" formControlName="image" (change)="onImageSelect($event)" id="uploadImage" hidden/>
+        <input type="file" name="image" (change)="onImageSelect($event)" id="uploadImage" hidden/>
         <label class="upload-image-button" for="uploadImage">Choose Image</label>
       </div>
       <div class="show-image-col">
@@ -90,7 +89,16 @@
     </div>
 
     <div class="save-button-row">
-      <button mat-raised-button color="primary" type="submit" style="width: 30%;">Save</button>
+      <button
+        mat-raised-button
+        color="primary"
+        style="width: fit-content; margin-right: 8px;"
+        (click)="onSave()"
+        [disabled]="addBookForm.invalid"
+      >
+        Save
+      </button>
+      <button mat-raised-button color="default" style="width: fit-content;" (click)="onCancel()">Cancel</button>
     </div>
   </form>
 </div>

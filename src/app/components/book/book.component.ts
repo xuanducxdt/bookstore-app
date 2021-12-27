@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { BookService } from 'src/app/services/book/book.service';
 import { AddNewCartData, CartService } from 'src/app/services/cart/cart.service';
 import { IBook } from '../books/books.component';
@@ -16,11 +17,13 @@ export class BookComponent implements OnInit {
   bookDetail: IBook | null = null;
   addCartButtonName: string = 'Add Cart';
   isSpinner: boolean = true;
+  isAdmin: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private bookService: BookService,
     private cartService: CartService,
+    private authService: AuthService,
     private _snackBar: MatSnackBar
   ) { }
 
@@ -35,6 +38,9 @@ export class BookComponent implements OnInit {
           });
       }
     });
+    const role = this.authService.getCookie('role');
+    console.log('role', role, role === 'admin')
+    if (role === 'admin') this.isAdmin = true;
   }
 
   onChangeQuantity(event: Event): void {

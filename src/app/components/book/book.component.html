@@ -14,7 +14,7 @@
                   <h4 class="book-title">[{{bookDetail.category.toUpperCase()}}] - {{bookDetail.title}}</h4>
                 </div>
                 <div>
-                  <button mat-mini-fab [mat-menu-trigger-for]="mainMenu" color="primary">
+                  <button mat-mini-fab [mat-menu-trigger-for]="mainMenu" color="primary" *ngIf="isAdmin">
                     <mat-icon>more_vert</mat-icon>
                   </button>
                 </div>

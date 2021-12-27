@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { BookService } from 'src/app/services/book/book.service';
 import { AddBookActionType, AddBookFormDialogComponent } from '../add-book-form-dialog/add-book-form-dialog.component';
 import { ToastMessageComponent, ToastType } from '../toast-message/toast-message.component';
@@ -31,15 +32,20 @@ export class BooksComponent implements OnInit {
 
   books: IBook[] = [];
   isSpinner: boolean = true;
+  isAdmin: boolean = false;
 
   constructor(
     private bookService: BookService,
+    private authService: AuthService,
     private dialog: MatDialog,
     private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
     this.getBooks();
+    const role = this.authService.getCookie('role');
+    console.log(role)
+    if (role === 'admin') this.isAdmin = true;
   }
 
   getBooks(): void {
