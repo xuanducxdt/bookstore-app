@@ -14,6 +14,11 @@ export interface ICartDetailResponse {
   data: ICart
 }
 
+export interface AddNewCartData {
+  totalAmount: number;
+  book: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -36,8 +41,8 @@ export class CartService {
       headers: this.headers
     });
   }
-  createCart(): Observable<ICommonResponse> {
-    return this.http.post<ICommonResponse>(this.cartApiUrl, {
+  createCart(newCartData: AddNewCartData): Observable<ICommonResponse> {
+    return this.http.post<ICommonResponse>(this.cartApiUrl, newCartData, {
       headers: this.headers
     });
   }
