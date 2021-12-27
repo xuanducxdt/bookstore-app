@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GlobalConstants } from 'src/app/common/global.constants';
 import { ICart } from 'src/app/components/cart/cart.component';
+import { AuthService } from '../auth/auth.service';
 import { ICommonResponse } from '../book/book.service';
 
 export interface ICartsResponse {
@@ -29,38 +30,44 @@ export interface UpdatedCartData {
 })
 export class CartService {
   private cartApiUrl: string = `${GlobalConstants.apiUrl}/api/cart`
-  private cartId: string = '61c44215e0ae9c56ceb25b31';
-  private headers = {
-    'x-access-token': GlobalConstants.token
-  }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   getCarts(): Observable<ICartsResponse> {
     return this.http.get<ICartsResponse>(this.cartApiUrl, {
-      headers: this.headers
+      headers: {
+        'x-access-token': this.authService.getCookie('token')
+      }
     });
   }
   getCart(cartId: string): Observable<ICartDetailResponse> {
     return this.http.get<ICartDetailResponse>(`${this.cartApiUrl}/${cartId}`, {
-      headers: this.headers
+      headers: {
+        'x-access-token': this.authService.getCookie('token')
+      }
     });
   }
   createCart(newCartData: AddNewCartData): Observable<ICommonResponse> {
     return this.http.post<ICommonResponse>(this.cartApiUrl, newCartData, {
-      headers: this.headers
+      headers: {
+        'x-access-token': this.authService.getCookie('token')
+      }
     });
   }
   updateCart(updatedCartData: UpdatedCartData): Observable<ICartDetailResponse> {
     return this.http.put<ICartDetailResponse>(`${this.cartApiUrl}/${updatedCartData.cart}`, {
       totalAmount: updatedCartData.totalAmount
     }, {
-      headers: this.headers
+      headers: {
+        'x-access-token': this.authService.getCookie('token')
+      }
     });
   }
   deleteCart(updateCartData: UpdatedCartData): Observable<ICommonResponse> {
     return this.http.delete<ICommonResponse>(`${this.cartApiUrl}/${updateCartData.cart}`, {
-      headers: this.headers
+      headers: {
+        'x-access-token': this.authService.getCookie('token')
+      }
     });
   }
 }

@@ -30,6 +30,9 @@ export interface IBook {
 })
 export class BooksComponent implements OnInit {
 
+  limit: number = 10;
+  skip: number = 0;
+  totalBooks: number = 0;
   books: IBook[] = [];
   isSpinner: boolean = true;
   isAdmin: boolean = false;
@@ -44,15 +47,16 @@ export class BooksComponent implements OnInit {
   ngOnInit(): void {
     this.getBooks();
     const role = this.authService.getCookie('role');
-    console.log(role)
     if (role === 'admin') this.isAdmin = true;
   }
 
   getBooks(): void {
     this.isSpinner = true;
     this.bookService.getBooks().subscribe((response) => {
+      console.log({ response })
       this.books = response.data;
       this.isSpinner = false;
+      this.totalBooks = response.count ? response.count : 0;
     });
   }
 

@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { BookService } from 'src/app/services/book/book.service';
 import { AddNewCartData, CartService } from 'src/app/services/cart/cart.service';
 import { IBook } from '../books/books.component';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { ToastMessageComponent, ToastType } from '../toast-message/toast-message.component';
 @Component({
   selector: 'app-book',
@@ -21,10 +23,12 @@ export class BookComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private bookService: BookService,
     private cartService: CartService,
     private authService: AuthService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -39,7 +43,6 @@ export class BookComponent implements OnInit {
       }
     });
     const role = this.authService.getCookie('role');
-    console.log('role', role, role === 'admin')
     if (role === 'admin') this.isAdmin = true;
   }
 
@@ -101,5 +104,33 @@ export class BookComponent implements OnInit {
         this.openSnackBar(3000, message, 'error');
       });
     }
+  }
+
+  openConfirmationDialog(book: IBook) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      disableClose: false,
+      position: {
+        top: '100px'
+      },
+      data: {
+        book: book._id
+      }
+    });
+    dialogRef.componentInstance.confirmMessage = "Are you sure you want to delete?"
+
+    dialogRef.afterClosed().subscribe(data => {
+      if(data) {
+        this.bookService.deleteBook(data).subscribe((response) => {
+          if (response.message === 'Success') {
+            this.router.navigate(['/']);
+            this.openSnackBar(3000, 'Delete book success!', 'success');
+          }
+        });
+      }
+    },
+    (error) => {
+      const message = error.error.error ? error.error.error : 'An error has occurred!';
+      this.openSnackBar(3000, message, 'error');
+    });
   }
 }

@@ -115,7 +115,6 @@ export class AddBookFormDialogComponent implements OnInit {
   }
 
   onCancel(): void {
-    console.log('cancel')
     this.dialogRef.close();
   }
 
