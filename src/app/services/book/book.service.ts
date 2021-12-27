@@ -40,8 +40,8 @@ export class BookService {
       }
     });
   }
-  createBook(): Observable<ICommonResponse> {
-    return this.http.post<ICommonResponse>(this.bookApiUrl, {
+  createBook(formData: FormData): Observable<ICommonResponse> {
+    return this.http.post<ICommonResponse>(this.bookApiUrl, formData, {
       headers: {
         'x-access-token': GlobalConstants.token
       }

@@ -2,7 +2,7 @@
   <h3 style="font-weight: bold;">Add New Book Form</h3>
   <form
     [formGroup]="addBookForm"
-    (ngSubmit)="addBook(addBookForm.value)"
+    (ngSubmit)="onSave()"
   >
     <div class="upload-image-row">
       <div class="upload-image-button-col">
@@ -20,13 +20,28 @@
           <mat-label>Title</mat-label>
           <input matInput formControlName="title">
         </mat-form-field>
+        <app-field-error-display
+          [formGroup]="addBookForm"
+          fieldControl="title"
+          [errors]="titleErrors"
+        ></app-field-error-display>
       </div>
 
       <div class="category-field-col">
+
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Category</mat-label>
-          <input matInput formControlName="category">
+          <mat-select formControlName="category">
+            <mat-option *ngFor="let category of categories" [value]="category.key">
+              {{category.value}}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
+        <app-field-error-display
+          [formGroup]="addBookForm"
+          fieldControl="category"
+          [errors]="categoryErrors"
+        ></app-field-error-display>
       </div>
     </div>
 
@@ -36,13 +51,23 @@
           <mat-label>Quantity</mat-label>
           <input matInput formControlName="quantity">
         </mat-form-field>
+        <app-field-error-display
+          [formGroup]="addBookForm"
+          fieldControl="quantity"
+          [errors]="quantityErrors"
+        ></app-field-error-display>
       </div>
 
       <div class="price-field-col">
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Price</mat-label>
-          <input matInput placeholder="xdt@bookstore.com" formControlName="price">
+          <input matInput formControlName="price">
         </mat-form-field>
+        <app-field-error-display
+          [formGroup]="addBookForm"
+          fieldControl="price"
+          [errors]="priceErrors"
+        ></app-field-error-display>
       </div>
     </div>
 
@@ -57,6 +82,11 @@
           cdkAutosizeMaxRows="18">
         ></textarea>
       </mat-form-field>
+      <app-field-error-display
+          [formGroup]="addBookForm"
+          fieldControl="description"
+          [errors]="descriptionErrors"
+        ></app-field-error-display>
     </div>
 
     <div class="save-button-row">

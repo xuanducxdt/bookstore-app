@@ -15,5 +15,5 @@ export class GlobalConstants {
     XLarge: 'XLarge'
   };
   public static apiUrl: string = 'http://localhost:8000';
-  public static token: string = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Il9pZCI6IjYxYzE5YjE1YmU5MDI3NjcwYWI5ZjlhYyIsImZ1bGxOYW1lIjoiTGlzYSBOZ3V54buFbiIsImVtYWlsIjoibGlzYUB4ZHQuY29tIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY0MDI1MTEyOCwiZXhwIjoxNjQzMjUxMTI4fQ.IhmH_tEBdrzpLklnD88AVE2yVdO_lKgt1da0DY2ZBWQ';
+  public static token: string = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Il9pZCI6IjYxYzkyMTgzZmYwZWY2Y2I2NjJlZTE3NyIsImZ1bGxOYW1lIjoiWHXDom4gxJDhu6ljIiwiZW1haWwiOiJ4ZHRAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY0MDU3NTA0OSwiZXhwIjoxNjQzNTc1MDQ5fQ.yMdVZnorsGLWzhjt_XNqpdwCXQG5W0Rpl-RPZeIUWTg';
 }
