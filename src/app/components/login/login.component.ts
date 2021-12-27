@@ -4,8 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user/user.service';
 import { ErrorConfig } from '../field-error-display/field-error-display.component';
-import { SuccessToastComponent } from '../success-toast/success-toast.component';
-import { ToastType } from '../toast-message/toast-message.component';
+import { ToastMessageComponent, ToastType } from '../toast-message/toast-message.component';
 
 type UserRole = 'admin' | 'user';
 export interface IUser {
@@ -77,7 +76,7 @@ export class LoginComponent implements OnInit {
   }
 
   openSnackBar(duration: number = 3000, message: string, type: ToastType) {
-    this._snackBar.openFromComponent(SuccessToastComponent, {
+    this._snackBar.openFromComponent(ToastMessageComponent, {
       duration,
       panelClass: [`${type}-snackbar`],
       horizontalPosition: 'right',
@@ -89,7 +88,6 @@ export class LoginComponent implements OnInit {
   }
 
   signIn(user: any): void {
-    console.log({ user });
     this.userService.signIn(user).subscribe((response) => {
       if (response.message === 'Success') {
         // this.selectedTabIndex = 0;

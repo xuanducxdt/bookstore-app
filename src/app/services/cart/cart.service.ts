@@ -19,6 +19,11 @@ export interface AddNewCartData {
   book: string;
 }
 
+export interface UpdatedCartData {
+  totalAmount?: number;
+  cart: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -46,13 +51,15 @@ export class CartService {
       headers: this.headers
     });
   }
-  updateCart(): Observable<ICartDetailResponse> {
-    return this.http.put<ICartDetailResponse>(`${this.cartApiUrl}/${this.cartId}`, {
+  updateCart(updatedCartData: UpdatedCartData): Observable<ICartDetailResponse> {
+    return this.http.put<ICartDetailResponse>(`${this.cartApiUrl}/${updatedCartData.cart}`, {
+      totalAmount: updatedCartData.totalAmount
+    }, {
       headers: this.headers
     });
   }
-  deleteCart(): Observable<ICommonResponse> {
-    return this.http.delete<ICommonResponse>(`${this.cartApiUrl}/${this.cartId}`, {
+  deleteCart(updateCartData: UpdatedCartData): Observable<ICommonResponse> {
+    return this.http.delete<ICommonResponse>(`${this.cartApiUrl}/${updateCartData.cart}`, {
       headers: this.headers
     });
   }

@@ -38,7 +38,6 @@ export class AppComponent implements OnDestroy{
         for (const query of Object.keys(result.breakpoints)) {
           if (result.breakpoints[query]) {
             this.currentScreenSize = this.displayNameMap.get(query) ?? 'Unknown';
-            console.log(this.currentScreenSize);
             switch(this.currentScreenSize) {
               case GlobalConstants.screenSize.XLarge:
               case GlobalConstants.screenSize.Large:

@@ -4,8 +4,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { BookService } from 'src/app/services/book/book.service';
 import { AddNewCartData, CartService } from 'src/app/services/cart/cart.service';
 import { IBook } from '../books/books.component';
-import { SuccessToastComponent } from '../success-toast/success-toast.component';
-import { ToastType } from '../toast-message/toast-message.component';
+import { ToastMessageComponent, ToastType } from '../toast-message/toast-message.component';
 @Component({
   selector: 'app-book',
   templateUrl: './book.component.html',
@@ -33,7 +32,6 @@ export class BookComponent implements OnInit {
           this.bookService.getBook(this.bookId).subscribe((response) => {
             this.bookDetail = response.data;
             this.isSpinner = false;
-            console.log(response.data)
           });
       }
     });
@@ -70,7 +68,7 @@ export class BookComponent implements OnInit {
   }
 
   openSnackBar(duration: number = 3000, message: string, type: ToastType) {
-    this._snackBar.openFromComponent(SuccessToastComponent, {
+    this._snackBar.openFromComponent(ToastMessageComponent, {
       duration,
       panelClass: [`${type}-snackbar`],
       horizontalPosition: 'right',

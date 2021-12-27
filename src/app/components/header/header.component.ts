@@ -12,7 +12,6 @@ export class HeaderComponent {
   constructor(private router: Router) {}
 
   goToPage(pageName: string): void {
-    console.log('pageName:', pageName)
     this.router.navigate([`/${pageName}`])
   }
 }

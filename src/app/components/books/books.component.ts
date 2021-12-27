@@ -3,8 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BookService } from 'src/app/services/book/book.service';
 import { AddBookActionType, AddBookFormDialogComponent } from '../add-book-form-dialog/add-book-form-dialog.component';
-import { SuccessToastComponent } from '../success-toast/success-toast.component';
-import { ToastType } from '../toast-message/toast-message.component';
+import { ToastMessageComponent, ToastType } from '../toast-message/toast-message.component';
 
 export type Category = 'drama' | 'comedy' | 'sport';
 
@@ -65,7 +64,7 @@ export class BooksComponent implements OnInit {
   }
 
   openSnackBar(duration: number = 3000, message: string, type: ToastType) {
-    this._snackBar.openFromComponent(SuccessToastComponent, {
+    this._snackBar.openFromComponent(ToastMessageComponent, {
       duration,
       panelClass: [`${type}-snackbar`],
       horizontalPosition: 'right',

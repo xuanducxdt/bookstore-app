@@ -1,0 +1,8 @@
+<div class="app-confirm-dialog-container">
+  <h1 md-dialog-title>Confirm</h1>
+  <div md-dialog-content style="height: 50px;">{{confirmMessage}}</div>
+  <div md-dialog-actions style="display: flex;justify-content: flex-end;">
+    <button mat-raised-button color="warn" style="width: max-content;margin-right: 8px;" (click)="onConfirm()">Confirm</button>
+    <button mat-raised-button color="default" style="width: max-content" (click)="onCancel()">Cancel</button>
+  </div>
+</div>

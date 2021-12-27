@@ -5,7 +5,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { BookService } from 'src/app/services/book/book.service';
 import { Category, IBook } from '../books/books.component';
 import { ErrorConfig } from '../field-error-display/field-error-display.component';
-import { SuccessToastComponent } from '../success-toast/success-toast.component';
 import { ToastType } from '../toast-message/toast-message.component';
 
 export interface CategoryData {

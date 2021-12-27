@@ -33,8 +33,8 @@ import { BooksComponent } from './components/books/books.component';
 import { CartComponent } from './components/cart/cart.component';
 import { FieldErrorDisplayComponent } from './components/field-error-display/field-error-display.component';
 import { FormInputComponent } from './components/form-input/form-input.component';
-import { SuccessToastComponent } from './components/success-toast/success-toast.component';
 import { ToastMessageComponent } from './components/toast-message/toast-message.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -50,8 +50,8 @@ import { ToastMessageComponent } from './components/toast-message/toast-message.
     CartComponent,
     FieldErrorDisplayComponent,
     FormInputComponent,
-    SuccessToastComponent,
     ToastMessageComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     ReactiveFormsModule,

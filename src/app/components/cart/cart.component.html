@@ -31,11 +31,11 @@
           <td mat-cell *matCellDef="let element">
             <div class="total-amount-row">
               <div class="total-amount-col">
-                <button mat-icon-button color="primary">
+                <button mat-icon-button color="primary" (click)="onDecreaseQuantity(element)" [disabled]="totalAmount[element._id] === 1">
                   <mat-icon>remove_circle</mat-icon>
                 </button>
-                <input class="quantity-input" type="number" min="0" max="{{element.book.quantity}}" [defaultValue]="element.totalAmount">
-                <button mat-icon-button color="primary">
+                <input class="quantity-input" type="number" min="1" max="{{element.book.quantity}}" [value]="totalAmount[element._id]" (keyup)="onChangeQuantity($event, element)">
+                <button mat-icon-button color="primary" (click)="onIncreaseQuantity(element)" [disabled]="totalAmount[element._id] === element.book.quantity">
                   <mat-icon>add_circle</mat-icon>
                 </button>
               </div>
@@ -60,7 +60,7 @@
           <th mat-header-cell *matHeaderCellDef></th>
           <td mat-cell *matCellDef="let element">
             <div class="delete-button-row">
-              <button mat-icon-button color="warn">
+              <button mat-icon-button color="warn" (click)="openConfirmationDialog(element)">
                 <mat-icon>delete_outline</mat-icon>
               </button>
             </div>
