@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { BookService } from 'src/app/services/book/book.service';
+import { CartService } from 'src/app/services/cart/cart.service';
 import { AddBookActionType, AddBookFormDialogComponent } from '../add-book-form-dialog/add-book-form-dialog.component';
 import { ToastMessageComponent, ToastType } from '../toast-message/toast-message.component';
 
@@ -36,15 +37,20 @@ export class BooksComponent implements OnInit {
   books: IBook[] = [];
   isSpinner: boolean = true;
   isAdmin: boolean = false;
+  cartCount: number = 0;
 
   constructor(
     private bookService: BookService,
     private authService: AuthService,
+    private cartService: CartService,
     private dialog: MatDialog,
     private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
+    this.cartService.getCarts().subscribe((res) => {
+      this.cartCount = res.data.length
+    });
     this.getBooks();
     const role = this.authService.getCookie('role');
     if (role === 'admin') this.isAdmin = true;
@@ -89,6 +95,7 @@ export class BooksComponent implements OnInit {
     this.bookService.createBook(formData).subscribe((response) => {
       if (response.message === 'Success') {
         this.openSnackBar(3000, 'Add new book success!', 'success');
+        this.cartService.setCartCount({ cartCount: this.cartCount + 1 });
         this.getBooks();
       }
     },

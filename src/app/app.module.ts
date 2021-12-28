@@ -36,6 +36,7 @@ import { FieldErrorDisplayComponent } from './components/field-error-display/fie
 import { FormInputComponent } from './components/form-input/form-input.component';
 import { ToastMessageComponent } from './components/toast-message/toast-message.component';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     FormInputComponent,
     ToastMessageComponent,
     ConfirmDialogComponent,
+    HomeComponent,
   ],
   imports: [
     ReactiveFormsModule,

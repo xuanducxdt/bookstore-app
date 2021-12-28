@@ -94,14 +94,16 @@ export class BookComponent implements OnInit {
         totalAmount: this.totalAmount,
         book: this.bookDetail?._id
       }
-      this.cartService.createCart(newCartData).subscribe((response) => {
-        if (response.message === 'Success') {
-          this.openSnackBar(3000, 'Add cart success!', 'success');
+      this.cartService.createCart(newCartData).subscribe({
+        next: (response) => {
+          if (response.message === 'Success') {
+            this.openSnackBar(3000, 'Add cart success!', 'success');
+          }
+        },
+        error: (error) => {
+          const message = error.error.error ? error.error.error : 'An error has occurred!';
+          this.openSnackBar(3000, message, 'error');
         }
-      },
-      (error) => {
-        const message = error.error.error ? error.error.error : 'An error has occurred!';
-        this.openSnackBar(3000, message, 'error');
       });
     }
   }

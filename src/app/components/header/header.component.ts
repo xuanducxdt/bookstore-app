@@ -1,16 +1,28 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { CartService } from 'src/app/services/cart/cart.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   @Input() showSearchInput = true;
 
-  constructor(private router: Router, private authService: AuthService) {}
+  cartCount: number = 0;
+
+  constructor(private router: Router, private authService: AuthService, private cartService: CartService) {}
+
+  ngOnInit(): void {
+    this.cartService.getCarts().subscribe((res) => {
+      this.cartService.setCartCount({ cartCount: res.data.length });
+    });
+    this.cartService.getCartCount().subscribe((value) => {
+      this.cartCount = value.cartCount;
+    });
+  }
 
   goToPage(pageName: string): void {
     this.router.navigate([`/${pageName}`])

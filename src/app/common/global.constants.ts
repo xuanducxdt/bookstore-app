@@ -16,5 +16,4 @@ export class GlobalConstants {
   };
   public static apiUrl: string = 'http://localhost:8000';
   public static cookieExpiryDays: number = 1;
-  public static token: string = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Il9pZCI6IjYxYzkyMTgzZmYwZWY2Y2I2NjJlZTE3NyIsImZ1bGxOYW1lIjoiWHXDom4gxJDhu6ljIiwiZW1haWwiOiJ4ZHRAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY0MDU3NTA0OSwiZXhwIjoxNjQzNTc1MDQ5fQ.yMdVZnorsGLWzhjt_XNqpdwCXQG5W0Rpl-RPZeIUWTg';
 }

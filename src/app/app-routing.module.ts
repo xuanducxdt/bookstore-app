@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BookComponent } from './components/book/book.component';
 import { BooksComponent } from './components/books/books.component';
 import { CartComponent } from './components/cart/cart.component';
+import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { AuthGuard } from './guards/auth/auth.guard';
@@ -14,18 +15,25 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: BooksComponent,
-    pathMatch: 'full',
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'book/:id',
-    component: BookComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'cart',
-    component: CartComponent,
+    children: [
+      {
+        path: '',
+        component: BooksComponent,
+        pathMatch: 'full',
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'book/:id',
+        component: BookComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'cart',
+        component: CartComponent,
+        canActivate: [AuthGuard]
+      },
+    ],
+    component: HomeComponent,
     canActivate: [AuthGuard]
   },
   {
