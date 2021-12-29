@@ -102,7 +102,9 @@ export class BookComponent implements OnInit {
         next: (response) => {
           if (response.message === 'Success') {
             this.openSnackBar(1500, 'Add cart success!', 'success');
-            this.cartService.setCartCount({ cartCount: this.cartCount + 1 });
+            if(response.data && response.data.isNewBook) {
+              this.cartService.setCartCount({ cartCount: this.cartCount + 1 });
+            }
           }
         },
         error: (error) => {

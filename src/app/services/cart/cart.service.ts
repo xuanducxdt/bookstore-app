@@ -10,6 +10,15 @@ export interface ICartsResponse {
   message: string;
   data: ICart[]
 }
+
+export interface IAddCartResponse {
+  data?: {
+    isNewBook: boolean;
+  },
+  message?: string;
+  statusCode?: number;
+  error?: string;
+}
 export interface ICartDetailResponse {
   message: string;
   data: ICart
@@ -62,8 +71,8 @@ export class CartService {
       }
     });
   }
-  createCart(newCartData: AddNewCartData): Observable<ICommonResponse> {
-    return this.http.post<ICommonResponse>(this.cartApiUrl, newCartData, {
+  createCart(newCartData: AddNewCartData): Observable<IAddCartResponse> {
+    return this.http.post<IAddCartResponse>(this.cartApiUrl, newCartData, {
       headers: {
         'x-access-token': this.authService.getCookie('token')
       }

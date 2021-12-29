@@ -50,7 +50,7 @@
           <td mat-cell *matCellDef="let element">
             <div class="book-price-row">
               <span class="book-price">
-                {{element.book.price | currency:'VND':true}}
+                {{(element.book.price * element.totalAmount) | currency:'VND':true}}
               </span>
             </div>
           </td>
