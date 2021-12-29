@@ -10,6 +10,13 @@ export interface ISignInResponse {
   data: IUser
 }
 
+export interface ISignUpData {
+  fullName: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -22,7 +29,7 @@ export class UserService {
     return this.http.post<ISignInResponse>(`${this.userApiUrl}/login`, user)
   }
 
-  signUp(user: IUser): Observable<ICommonResponse> {
-    return this.http.post<ICommonResponse>(this.userApiUrl, user)
+  signUp(signUpData: ISignUpData): Observable<ICommonResponse> {
+    return this.http.post<ICommonResponse>(this.userApiUrl, signUpData)
   }
 }

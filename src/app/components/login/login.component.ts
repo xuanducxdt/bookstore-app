@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { GlobalConstants } from 'src/app/common/global.constants';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { UserService } from 'src/app/services/user/user.service';
+import { ISignUpData, UserService } from 'src/app/services/user/user.service';
 import { ErrorConfig } from '../field-error-display/field-error-display.component';
 import { ToastMessageComponent, ToastType } from '../toast-message/toast-message.component';
 
@@ -13,7 +13,7 @@ export interface IUser {
   _id?: string;
   fullName?: string;
   email: string;
-  password: string;
+  password?: string;
   role?: UserRole;
   accessToken?: string;
 }
@@ -105,8 +105,8 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  signUp(user: IUser, sigUpFormDirective: FormGroupDirective): void {
-    this.userService.signUp(user).subscribe((response) => {
+  signUp(signUpData: ISignUpData, sigUpFormDirective: FormGroupDirective): void {
+    this.userService.signUp(signUpData).subscribe((response) => {
       if (response.message === 'Success') {
         this.selectedTabIndex = 0;
         this.openSnackBar(1500, 'Sign up success!', 'success');

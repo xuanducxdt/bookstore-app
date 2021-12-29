@@ -3,7 +3,7 @@
     <div class="main-col">
       <mat-toolbar color="primary" style="justify-content: center;">
         <mat-icon>bubble_chart</mat-icon>
-        <span class="mr-12 ml-12">NT BOOKSTORE</span>
+        <span class="mr-12 ml-12" data-testid="logo-title">NT BOOKSTORE</span>
       </mat-toolbar>
       <mat-tab-group dynamicHeight [(selectedIndex)]="selectedTabIndex">
         <mat-tab label="Sign In">
@@ -12,10 +12,11 @@
               [formGroup]="signInForm"
               (ngSubmit)="signIn(signInForm.value)"
               style="min-width: 300px;"
+              data-testid="sign-in-form"
             >
               <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>Email</mat-label>
-                <input matInput placeholder="xdt@bookstore.com" formControlName="email">
+                <input matInput placeholder="xdt@bookstore.com" formControlName="email" data-testid="sign-in-email">
               </mat-form-field>
               <app-field-error-display
                 [formGroup]="signInForm"
@@ -25,7 +26,7 @@
 
               <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>Password</mat-label>
-                <input matInput formControlName="password" type="password">
+                <input matInput formControlName="password" type="password" data-testid="sign-in-password">
               </mat-form-field>
               <app-field-error-display
                 [formGroup]="signInForm"
@@ -33,7 +34,14 @@
                 [errors]="passwordErrors"
               ></app-field-error-display>
 
-              <button [disabled]="signInForm.invalid" mat-raised-button color="primary" type="submit" style="width: 100%;">Sign In</button>
+              <button
+                [disabled]="signInForm.invalid"
+                mat-raised-button
+                color="primary"
+                type="submit"
+                style="width: 100%;"
+                data-testid="sign-in-button"
+              >Sign In</button>
             </form>
           </div>
         </mat-tab>
@@ -44,10 +52,11 @@
               (ngSubmit)="signUp(signUpForm.value, sigUpFormDirective)"
               #sigUpFormDirective="ngForm"
               style="min-width: 300px;"
+              data-testid="sign-up-form"
             >
-              <mat-form-field class="example-full-width" appearance="fill">
+              <mat-form-field id="mat-full-name" class="example-full-width" appearance="fill">
                 <mat-label>Full Name</mat-label>
-                <input matInput formControlName="fullName">
+                <input matInput formControlName="fullName" data-testid="sign-up-fullName">
               </mat-form-field>
               <app-field-error-display
                 [formGroup]="signUpForm"
@@ -57,7 +66,7 @@
 
               <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>Email</mat-label>
-                <input matInput placeholder="xdt@bookstore.com" formControlName="email">
+                <input matInput placeholder="xdt@bookstore.com" formControlName="email" data-testid="sign-up-email">
               </mat-form-field>
               <app-field-error-display
                 [formGroup]="signUpForm"
@@ -67,7 +76,7 @@
 
               <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>Password</mat-label>
-                <input matInput formControlName="password" type="password">
+                <input matInput formControlName="password" type="password" data-testid="sign-up-password">
               </mat-form-field>
               <app-field-error-display
                 [formGroup]="signUpForm"
@@ -77,7 +86,7 @@
 
               <mat-form-field class="example-full-width" appearance="fill">
                 <mat-label>Confirm Password</mat-label>
-                <input matInput formControlName="confirmPassword" type="password">
+                <input matInput formControlName="confirmPassword" type="password" data-testid="sign-up-confirmPassword">
               </mat-form-field>
               <app-field-error-display
                 [formGroup]="signUpForm"
@@ -85,7 +94,14 @@
                 [errors]="confirmPasswordErrors"
               ></app-field-error-display>
 
-              <button [disabled]="signUpForm.invalid" mat-raised-button color="primary" type="submit" style="width: 100%;">Sign Up</button>
+              <button
+                [disabled]="signUpForm.invalid"
+                mat-raised-button
+                color="primary"
+                type="submit"
+                style="width: 100%;"
+                data-testid="sign-up-button"
+              >Sign Up</button>
             </form>
           </div>
         </mat-tab>

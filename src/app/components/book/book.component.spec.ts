@@ -9,7 +9,7 @@ import { SpinnerComponent } from '../spinner/spinner.component';
 
 import { BookComponent } from './book.component';
 
-fdescribe('BookComponent', () => {
+describe('BookComponent', () => {
   let component: BookComponent;
   let fixture: ComponentFixture<BookComponent>;
 
