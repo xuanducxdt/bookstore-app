@@ -3,7 +3,7 @@
   <div class="main-row" *ngIf="!isSpinner">
     <div class="main-col">
       <div class="book-list-header">
-        <h3 class="number-books">Number of books: 12</h3>
+        <h3 class="number-books">Number of books: {{totalBooks}}</h3>
         <button mat-raised-button color="primary" (click)="openDialog()" *ngIf="isAdmin">
           <mat-icon>add</mat-icon>
           Add New Book

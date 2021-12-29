@@ -40,9 +40,6 @@ export class CartService {
   private cartCount$ = this.cartCount.asObservable();
 
   constructor(private http: HttpClient, private authService: AuthService) {
-    this.getCarts().subscribe((res) => {
-
-    });
   }
 
   getCarts(): Observable<ICartsResponse> {

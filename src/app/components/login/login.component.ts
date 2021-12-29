@@ -101,7 +101,7 @@ export class LoginComponent implements OnInit {
     },
     (error) => {
       const message = error.error.error ? error.error.error : 'An error has occurred!';
-      this.openSnackBar(3000, message, 'error');
+      this.openSnackBar(1500, message, 'error');
     });
   }
 
@@ -109,14 +109,14 @@ export class LoginComponent implements OnInit {
     this.userService.signUp(user).subscribe((response) => {
       if (response.message === 'Success') {
         this.selectedTabIndex = 0;
-        this.openSnackBar(3000, 'Sign up success!', 'success');
+        this.openSnackBar(1500, 'Sign up success!', 'success');
         this.signUpForm.reset();
         sigUpFormDirective.resetForm();
       }
     },
     (error) => {
       const message = error.error.error ? error.error.error : 'An error has occurred!';
-      this.openSnackBar(3000, message, 'error');
+      this.openSnackBar(1500, message, 'error');
     });
   }
 

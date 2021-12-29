@@ -37,20 +37,15 @@ export class BooksComponent implements OnInit {
   books: IBook[] = [];
   isSpinner: boolean = true;
   isAdmin: boolean = false;
-  cartCount: number = 0;
 
   constructor(
     private bookService: BookService,
     private authService: AuthService,
-    private cartService: CartService,
     private dialog: MatDialog,
     private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
-    this.cartService.getCarts().subscribe((res) => {
-      this.cartCount = res.data.length
-    });
     this.getBooks();
     const role = this.authService.getCookie('role');
     if (role === 'admin') this.isAdmin = true;
@@ -59,7 +54,6 @@ export class BooksComponent implements OnInit {
   getBooks(): void {
     this.isSpinner = true;
     this.bookService.getBooks().subscribe((response) => {
-      console.log({ response })
       this.books = response.data;
       this.isSpinner = false;
       this.totalBooks = response.count ? response.count : 0;
@@ -94,14 +88,13 @@ export class BooksComponent implements OnInit {
   addBook(formData: FormData): void {
     this.bookService.createBook(formData).subscribe((response) => {
       if (response.message === 'Success') {
-        this.openSnackBar(3000, 'Add new book success!', 'success');
-        this.cartService.setCartCount({ cartCount: this.cartCount + 1 });
+        this.openSnackBar(1500, 'Add new book success!', 'success');
         this.getBooks();
       }
     },
     (error) => {
       const message = error.error.error ? error.error.error : 'An error has occurred!';
-      this.openSnackBar(3000, message, 'error');
+      this.openSnackBar(1500, message, 'error');
     });
   }
 

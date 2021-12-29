@@ -20,6 +20,7 @@ export class BookComponent implements OnInit {
   addCartButtonName: string = 'Add Cart';
   isSpinner: boolean = true;
   isAdmin: boolean = false;
+  cartCount: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -41,6 +42,9 @@ export class BookComponent implements OnInit {
             this.isSpinner = false;
           });
       }
+    });
+    this.cartService.getCartCount().subscribe((data) => {
+      this.cartCount = data.cartCount;
     });
     const role = this.authService.getCookie('role');
     if (role === 'admin') this.isAdmin = true;
@@ -97,12 +101,13 @@ export class BookComponent implements OnInit {
       this.cartService.createCart(newCartData).subscribe({
         next: (response) => {
           if (response.message === 'Success') {
-            this.openSnackBar(3000, 'Add cart success!', 'success');
+            this.openSnackBar(1500, 'Add cart success!', 'success');
+            this.cartService.setCartCount({ cartCount: this.cartCount + 1 });
           }
         },
         error: (error) => {
           const message = error.error.error ? error.error.error : 'An error has occurred!';
-          this.openSnackBar(3000, message, 'error');
+          this.openSnackBar(1500, message, 'error');
         }
       });
     }
@@ -125,14 +130,14 @@ export class BookComponent implements OnInit {
         this.bookService.deleteBook(data).subscribe((response) => {
           if (response.message === 'Success') {
             this.router.navigate(['/']);
-            this.openSnackBar(3000, 'Delete book success!', 'success');
+            this.openSnackBar(1500, 'Delete book success!', 'success');
           }
         });
       }
     },
     (error) => {
       const message = error.error.error ? error.error.error : 'An error has occurred!';
-      this.openSnackBar(3000, message, 'error');
+      this.openSnackBar(1500, message, 'error');
     });
   }
 }

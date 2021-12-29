@@ -96,14 +96,15 @@ export class CartComponent implements OnInit, OnDestroy {
         this.cartService.deleteCart(data).subscribe((response) => {
           if (response.message === 'Success') {
             this.getCarts();
-            this.openSnackBar(3000, 'Delete cart success!', 'success');
+            this.cartService.setCartCount({ cartCount: this.carts.length - 1 })
+            this.openSnackBar(1500, 'Delete cart success!', 'success');
           }
         });
       }
     },
     (error) => {
       const message = error.error.error ? error.error.error : 'An error has occurred!';
-      this.openSnackBar(3000, message, 'error');
+      this.openSnackBar(1500, message, 'error');
     });
   }
 
