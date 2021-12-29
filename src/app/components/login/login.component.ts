@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
     },
     {
       name: 'invalidEmail',
-      message: 'Invalid format email.'
+      message: 'Invalid email format.'
     }
   ];
   passwordErrors: ErrorConfig[] = [
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
     },
     {
       name: 'invalidPassword',
-      message: 'Invalid format password.'
+      message: 'Invalid password format.'
     }
   ];
   confirmPasswordErrors: ErrorConfig[] = [
@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
     },
     {
       name: 'invalidConfirmPassword',
-      message: 'Confirm password must match password .'
+      message: 'Confirm password must match password.'
     }
   ];
 

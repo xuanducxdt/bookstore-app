@@ -16,9 +16,12 @@ export class FieldErrorDisplayComponent implements OnInit {
   @Input() fieldControl: string = '';
   @Input() errors: ErrorConfig[] = [];
 
+  errorMessageTestId: string = '';
+
   constructor() { }
 
   ngOnInit(): void {
+    this.errorMessageTestId = `${this.formGroup}-${this.fieldControl}`;
   }
 
 }

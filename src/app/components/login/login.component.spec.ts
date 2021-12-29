@@ -16,32 +16,12 @@ import {
   setFieldValue
 } from '../../spec-helpers/element.spec-helper';
 import { confirmPassword, email, fullName, password, signUpData } from 'src/app/spec-helpers/signup-data.spec-helper';
+import { FieldErrorDisplayComponent } from '../field-error-display/field-error-display.component';
 
 fdescribe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   let userService: jasmine.SpyObj<UserService>;
-
-  // const setup = async (
-  //   userServiceReturnValues?: jasmine.SpyObjMethodNames<UserService>,
-  // ) => {
-  //   userService = jasmine.createSpyObj<UserService>('UserService', {
-  //     signIn: of({
-  //       message: 'Success',
-  //       data: {
-  //         _id: '61c92183ff0ef6cb662ee177',
-  //         fullName: 'Xuân Đức',
-  //         email: 'xdt@gmail.com',
-  //         role: 'admin',
-  //         accessToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Il9pZCI6IjYxYzkyMTgzZmYwZWY2Y2I2NjJlZTE3NyIsImZ1bGxOYW1lIjoiWHXDom4gxJDhu6ljIiwiZW1haWwiOiJ4ZHRAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTY0MDc1ODk2OCwiZXhwIjoxNjQzNzU4OTY4fQ.BHAlwCfW_LyGIaNjeruwBPTGJ-Je6uKfDOUPF4cLQ_o'
-  //       }
-  //     }),
-  //     signUp: of({
-  //       message: 'Success'
-  //     }),
-  //     ...userServiceReturnValues
-  //   });
-  // };
 
   const fillForm = () => {
     setFieldValue(fixture, 'sign-up-fullName', fullName);
@@ -53,7 +33,8 @@ fdescribe('LoginComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
-        LoginComponent
+        LoginComponent,
+        FieldErrorDisplayComponent
       ],
       imports: [
         RouterModule.forRoot([]),
@@ -99,6 +80,7 @@ fdescribe('LoginComponent', () => {
       const { signUpForm } = component;
 
       expect(signUpForm.valid).toEqual(true);
+      expect(signUpForm.value).toEqual(signUpData);
       expect(findEl(fixture, 'sign-up-button').properties?.['disabled']).toBe(false);
     });
 
@@ -138,7 +120,13 @@ fdescribe('LoginComponent', () => {
 
       it('should be invalid when entered wrong email format', () => {
         setFieldValue(fixture, 'sign-up-email', 'Lisa Nguyễn');
-        console.log('email', email)
+        fixture.detectChanges();
+
+        const signUpFormElement = findEl(fixture, 'sign-up-form').nativeElement;
+        const fieldErrorDisplayElement = signUpFormElement.querySelector('app-field-error-display[fieldcontrol="email"]');
+        const errorMessageElement = fieldErrorDisplayElement.querySelector('div[class="error-message"]');
+
+        expect(errorMessageElement.textContent.trim()).toEqual('Invalid email format.')
         expect(email.errors?.['invalidEmail']).toBe(true);
       });
 
@@ -164,6 +152,13 @@ fdescribe('LoginComponent', () => {
 
       it('should be invalid when entered wrong password format', () => {
         setFieldValue(fixture, 'sign-up-password', '123456');
+        fixture.detectChanges();
+
+        const signUpFormElement = findEl(fixture, 'sign-up-form').nativeElement;
+        const fieldErrorDisplayElement = signUpFormElement.querySelector('app-field-error-display[fieldcontrol="password"]');
+        const errorMessageElement = fieldErrorDisplayElement.querySelector('div[class="error-message"]');
+
+        expect(errorMessageElement.textContent.trim()).toEqual('Invalid password format.')
         expect(password.errors?.['invalidPassword']).toBe(true);
       });
 
@@ -186,6 +181,13 @@ fdescribe('LoginComponent', () => {
       it('should be invalid when confirm password does not match password', () => {
         setFieldValue(fixture, 'sign-up-password', '@Aa1234')
         setFieldValue(fixture, 'sign-up-confirmPassword', '123456');
+        fixture.detectChanges();
+
+        const signUpFormElement = findEl(fixture, 'sign-up-form').nativeElement;
+        const fieldErrorDisplayElement = signUpFormElement.querySelector('app-field-error-display[fieldcontrol="confirmPassword"]');
+        const errorMessageElement = fieldErrorDisplayElement.querySelector('div[class="error-message"]');
+
+        expect(errorMessageElement.textContent.trim()).toEqual('Confirm password must match password.')
         expect(findEl(fixture, 'sign-up-password').nativeElement.value)
           .not.toEqual(findEl(fixture, 'sign-up-confirmPassword').nativeElement.value);
         expect(confirmPassword.errors?.['invalidConfirmPassword']).toBe(true);
