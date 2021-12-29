@@ -1,18 +1,14 @@
 import { HttpClientModule } from '@angular/common/http';
-import { ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
-import { AbstractControl, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { AbstractControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterModule } from '@angular/router';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
-import { UserService } from 'src/app/services/user/user.service';
-import { of, throwError } from 'rxjs';
 
 import { LoginComponent } from './login.component';
 import {
   findEl,
   expectText,
-  click,
-  makeClickEvent,
   setFieldValue
 } from '../../spec-helpers/element.spec-helper';
 import { confirmPassword, email, fullName, password, signUpData } from 'src/app/spec-helpers/signup-data.spec-helper';
@@ -21,7 +17,6 @@ import { FieldErrorDisplayComponent } from '../field-error-display/field-error-d
 fdescribe('LoginComponent', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
-  let userService: jasmine.SpyObj<UserService>;
 
   const fillForm = () => {
     setFieldValue(fixture, 'sign-up-fullName', fullName);
@@ -47,10 +42,7 @@ fdescribe('LoginComponent', () => {
         {
           provide: JWT_OPTIONS, useValue: JWT_OPTIONS
         },
-        JwtHelperService,
-        {
-          provide: UserService, useValue: userService
-        }
+        JwtHelperService
       ],
     })
     .compileComponents();
@@ -67,22 +59,37 @@ fdescribe('LoginComponent', () => {
   });
 
   describe('Registration Form', () => {
-    it('should disable "Sign Up" button when form is invalid', async () => {
+    it('should disable "Sign Up" button when form is invalid', fakeAsync(async () => {
       const { signUpForm } = component;
+      spyOn(component, 'signUp');
+
+      const signUpFormElement = findEl(fixture, 'sign-up-form').nativeElement;
+      const button = signUpFormElement.querySelector('button[data-testid="sign-up-button"]');
+      button.click();
+      tick();
+
+      expect(component.signUp).not.toHaveBeenCalled();
 
       expect(signUpForm.invalid).toEqual(true);
       expect(findEl(fixture, 'sign-up-button').properties?.['disabled']).toBe(true);
-    });
+    }));
 
-    it('should enable "Sign Up" button when form is valid', async () => {
+    it('should enable "Sign Up" button when form is valid', fakeAsync(async () => {
       fillForm();
       fixture.detectChanges();
       const { signUpForm } = component;
+      spyOn(component, 'signUp');
 
+      const signUpFormElement = findEl(fixture, 'sign-up-form').nativeElement;
+      const button = signUpFormElement.querySelector('button[data-testid="sign-up-button"]');
+      button.click();
+      tick();
+
+      expect(component.signUp).toHaveBeenCalled();
       expect(signUpForm.valid).toEqual(true);
       expect(signUpForm.value).toEqual(signUpData);
       expect(findEl(fixture, 'sign-up-button').properties?.['disabled']).toBe(false);
-    });
+    }));
 
     describe('Full Name Field Input', () => {
       let fullName: AbstractControl;
